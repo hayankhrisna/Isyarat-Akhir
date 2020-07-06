@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hayankhrisna.tugasakhir">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/circle_cropped"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".LatihanSoal.ResultActivity"></activity>
+        <activity android:name=".Login.SignUp" />
+        <activity android:name=".LatihanSoal.SoalTema2" />
+        <activity android:name=".LatihanSoal.SoalTema1" />
+        <activity android:name=".MateriTema2" />
+        <activity android:name=".MateriTema1" />
+        <activity android:name=".HalamanSoal" />
+        <activity android:name=".dasarfile.HalamanBhsDasar" />
+        <activity android:name=".HalamanMateri" />
+        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".dasarfile.Dasar_Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi1.Materi1_Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi1.Main1Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi2.Main2Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi2.Materi2_Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi3.Materi3_Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi5.Materi5_Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi5.Materi5Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi3.Main3Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi4.Main4Activity" />
+        <activity android:name=".materitema1.MateriTema1.materi4.Materi4_Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi6.Materi6_Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi6.Materi6Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi7.Materi7_Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi7.Main7Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi8.Materi8_Activity" />
+        <activity android:name=".materitema2.MateriTema2.materi8.Materi8Activity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
