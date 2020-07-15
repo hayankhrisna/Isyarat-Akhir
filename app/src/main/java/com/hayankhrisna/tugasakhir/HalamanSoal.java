@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.hayankhrisna.tugasakhir.LatihanSoal.SoalTema1;
-import com.hayankhrisna.tugasakhir.LatihanSoal.SoalTema2;
 
 public class HalamanSoal extends AppCompatActivity {
 
@@ -17,13 +16,21 @@ public class HalamanSoal extends AppCompatActivity {
         Intent intent = getIntent();
     }
 
-    public void launchSoal1(View view) {
+
+    public void btnMulai(View view) {
         Intent intent = new Intent(HalamanSoal.this, SoalTema1.class);
         startActivity(intent);
     }
 
-    public void launchSoal2(View view) {
-        Intent intent = new Intent(HalamanSoal.this, SoalTema2.class);
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HalamanSoal.this, MainActivity.class);
+        intent.addCategory(Intent.CATEGORY_HOME);
+
         startActivity(intent);
+        super.onBackPressed();
     }
+
+
 }
+

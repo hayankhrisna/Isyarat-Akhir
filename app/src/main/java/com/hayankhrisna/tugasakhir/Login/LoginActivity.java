@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(start);
                     }else{
                         Toast.makeText(LoginActivity.this,
-                                "Kata Sandi Salah!", Toast.LENGTH_LONG).show();
+                                "Data Salah!", Toast.LENGTH_LONG).show();
                     }
                 }
 

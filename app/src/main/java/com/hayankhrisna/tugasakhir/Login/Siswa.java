@@ -2,16 +2,18 @@ package com.hayankhrisna.tugasakhir.Login;
 
 public class Siswa {
 
+    private String namalengkap;
     private String nama;
     private String pass;
+
 
     public Siswa(){
 
     }
 
-    public Siswa(String nama, String pass){
+    public Siswa(String namalengkap, String nama, String pass){
+        this.namalengkap = namalengkap;
         this.nama = nama;
-
         this.pass = pass;
     }
 
@@ -30,5 +32,13 @@ public class Siswa {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getNamalengkap() {
+        return namalengkap;
+    }
+
+    public void setNamalengkap(String namalengkap) {
+        this.namalengkap = namalengkap;
     }
 }
