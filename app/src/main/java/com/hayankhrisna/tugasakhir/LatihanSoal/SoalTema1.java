@@ -9,12 +9,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.autofill.AutofillId;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +30,6 @@ public class SoalTema1 extends AppCompatActivity {
     Button b1,b2,b3,b4;
     TextView question1,timer;
     int total=0;
-//    String total;
-//    int jumlah=0;
     int correct=0;
     int wrong=0;
     DatabaseReference myRef;
@@ -52,6 +53,11 @@ public class SoalTema1 extends AppCompatActivity {
         total++;
         if (total > 5){
             //open result activity
+            Intent intent=new Intent(SoalTema1.this,ResultActivity.class);
+            intent.putExtra("total",String.valueOf(total));
+            intent.putExtra("correct",String.valueOf(correct));
+            intent.putExtra("incorrect",String.valueOf(wrong));
+            startActivity(intent);
         }
         else {
 //            String mGroupId = myRef.push().getKey();
@@ -60,6 +66,16 @@ public class SoalTema1 extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final Question question = dataSnapshot.getValue(Question.class);
+
+                    Log.e("Gambar",question.getUrl());
+                    // ImageView in your Activity
+                    ImageView imageView = findViewById(R.id.url);
+                    //Load the image using Glide
+                    Glide.with(SoalTema1.this)
+//                .using(new FirebaseImageLoader())
+                            .load(question.getUrl())
+                            .placeholder(R.drawable.load)
+                            .into(imageView);
 
                     question1.setText(question.getQuestion());
                     b1.setText(question.getOption1());
@@ -248,7 +264,7 @@ public class SoalTema1 extends AppCompatActivity {
         }
     }
     public void reversetimer(int seconds,final TextView timer){
-        new CountDownTimer(30000,1000){
+        new CountDownTimer(120000,1000){
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -257,14 +273,22 @@ public class SoalTema1 extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                timer.setText("Completed");
-                Intent intent=new Intent(SoalTema1.this, ResultActivity.class);
-                intent.putExtra("total",String.valueOf(total));
-                intent.putExtra("correct",String.valueOf(correct));
-                intent.putExtra("incorrect",String.valueOf(wrong));
-                startActivity(intent);
+//                timer.setText("Completed");
+//                Intent intent=new Intent(SoalTema1.this, ResultActivity.class);
+//                intent.putExtra("total",String.valueOf(total));
+//                intent.putExtra("correct",String.valueOf(correct));
+//                intent.putExtra("incorrect",String.valueOf(wrong));
+//                startActivity(intent);
             }
         }.start();
 
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

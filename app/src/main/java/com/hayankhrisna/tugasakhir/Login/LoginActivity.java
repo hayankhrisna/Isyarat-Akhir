@@ -34,15 +34,15 @@ public class LoginActivity extends AppCompatActivity {
     }
     String password;
     public void btnLogin(View view) {
-        String nama = name.getText().toString();
+        final String nama = name.getText().toString();
         password = passd.getText().toString();
 
         try{
-            ref.child(nama).addValueEventListener(new ValueEventListener() {
+            ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Siswa siswa = dataSnapshot.getValue(Siswa.class);
-                    if (password.equals(siswa.getPass())){
+                    if (password.equals(siswa.getPass()) || nama.equals(siswa.getNama())){
                         Toast.makeText(LoginActivity.this,
                                 "Berhasil Login!", Toast.LENGTH_LONG).show();
                         Intent start = new Intent(LoginActivity.this, MainActivity.class);
