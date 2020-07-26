@@ -1,10 +1,15 @@
 package com.hayankhrisna.tugasakhir.Login;
 
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,19 +43,40 @@ public class LoginActivity extends AppCompatActivity {
         password = passd.getText().toString();
 
         try{
-            ref.addValueEventListener(new ValueEventListener() {
+            ref.child(nama).addValueEventListener(new ValueEventListener() {
+
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Siswa siswa = dataSnapshot.getValue(Siswa.class);
-                    if (password.equals(siswa.getPass()) || nama.equals(siswa.getNama())){
+                    try {
+                        Siswa siswa = dataSnapshot.getValue(Siswa.class);
+                        Log.e("JANCOK",password);
+                        Log.e("JANCOK",nama);
+                        Log.e("JANCOK",siswa.getNama());
+
+                        if (password.equals(siswa.getPass())) {
+                            Toast.makeText(LoginActivity.this,
+                                    "Berhasil Login!", Toast.LENGTH_LONG).show();
+                            SharedPreferences mSettings = LoginActivity.this.getSharedPreferences("DATA", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = mSettings.edit();
+                            editor.putString("NAMA", siswa.getNamalengkap());
+                            editor.apply();
+
+                            Intent start = new Intent(LoginActivity.this, MainActivity.class);
+                            start.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                            startActivity(start);
+                        } else {
+                            Toast.makeText(LoginActivity.this,
+                                    "Data Salah!", Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception ex) {
                         Toast.makeText(LoginActivity.this,
-                                "Berhasil Login!", Toast.LENGTH_LONG).show();
-                        Intent start = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(start);
-                    }else{
-                        Toast.makeText(LoginActivity.this,
-                                "Data Salah!", Toast.LENGTH_LONG).show();
+                                "Nama Kamu Tidak Ada!", Toast.LENGTH_LONG).show();
+
+                        ex.printStackTrace();
                     }
+
                 }
 
                 @Override

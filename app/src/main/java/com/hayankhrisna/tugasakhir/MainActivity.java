@@ -1,9 +1,12 @@
 package com.hayankhrisna.tugasakhir;
 
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -33,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         myName = findViewById(R.id.user);
+        SharedPreferences mSettings = this.getSharedPreferences("DATA", Context.MODE_PRIVATE);
+        String namaLengkap = mSettings.getString("NAMA", "null");
 
-//        myName.setText(ref.child("Siswa.class"));
+        myName.setText(namaLengkap);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference().child("Siswa");
     }
@@ -60,8 +65,11 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Siswa siswa = snapshot.getValue(Siswa.class);
                 if (siswa != null) {
-                    Toast.makeText(MainActivity.this, "Logout Berhasil", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
+
                 } else {
                     Toast.makeText(MainActivity.this,
                             "Gagal Logout!", Toast.LENGTH_LONG).show();
@@ -76,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void btnCredit(View view) {
+    }
+
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -83,4 +94,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         super.onBackPressed();
     }
+
+
 }

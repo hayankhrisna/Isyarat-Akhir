@@ -28,7 +28,7 @@ import com.hayankhrisna.tugasakhir.R;
 public class SoalTema1 extends AppCompatActivity {
 
     Button b1,b2,b3,b4;
-    TextView question1,timer;
+    TextView question1;
     int total=0;
     int correct=0;
     int wrong=0;
@@ -40,18 +40,18 @@ public class SoalTema1 extends AppCompatActivity {
         setContentView(R.layout.activity_soal);
 
         question1=findViewById(R.id.question);
-        timer=findViewById(R.id.timer);
+//        timer=findViewById(R.id.timer);
         b1=findViewById(R.id.oprion1);
         b2=findViewById(R.id.oprion2);
         b3=findViewById(R.id.oprion3);
         b4=findViewById(R.id.oprion4);
         UpdateQuestion();
-        reversetimer(1000,timer);
+//        reversetimer(1000,timer);
     }
 
     private void UpdateQuestion() {
         total++;
-        if (total > 5){
+        if (total > 10){
             //open result activity
             Intent intent=new Intent(SoalTema1.this,ResultActivity.class);
             intent.putExtra("total",String.valueOf(total));
@@ -263,26 +263,26 @@ public class SoalTema1 extends AppCompatActivity {
             });
         }
     }
-    public void reversetimer(int seconds,final TextView timer){
-        new CountDownTimer(120000,1000){
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timer.setText("Sisa Waktu: "+millisUntilFinished/1000);
-            }
-
-            @Override
-            public void onFinish() {
-//                timer.setText("Completed");
-//                Intent intent=new Intent(SoalTema1.this, ResultActivity.class);
-//                intent.putExtra("total",String.valueOf(total));
-//                intent.putExtra("correct",String.valueOf(correct));
-//                intent.putExtra("incorrect",String.valueOf(wrong));
-//                startActivity(intent);
-            }
-        }.start();
-
-    }
+//    public void reversetimer(int seconds,final TextView timer){
+//        new CountDownTimer(120000,1000){
+//
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                timer.setText("Sisa Waktu: "+millisUntilFinished/1000);
+//            }
+//
+//            @Override
+//            public void onFinish() {
+////                timer.setText("Completed");
+////                Intent intent=new Intent(SoalTema1.this, ResultActivity.class);
+////                intent.putExtra("total",String.valueOf(total));
+////                intent.putExtra("correct",String.valueOf(correct));
+////                intent.putExtra("incorrect",String.valueOf(wrong));
+////                startActivity(intent);
+//            }
+//        }.start();
+//
+//    }
 
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
